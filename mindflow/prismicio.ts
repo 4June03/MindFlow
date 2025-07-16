@@ -6,6 +6,7 @@ import {
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
 
+
 /**
  * The project's Prismic repository name.
  */

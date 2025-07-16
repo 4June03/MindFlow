@@ -69,53 +69,194 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+/**
+ * Item in *Author → Social Links*
+ */
+export interface AuthorDocumentDataSocialLinksItem {
+  /**
+   * link field in *Author → Social Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.social_links[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Author documents
+ */
+interface AuthorDocumentData {
+  /**
+   * name field in *Author*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * slug field in *Author*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.slug
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  slug: prismic.KeyTextField;
+
+  /**
+   * bio field in *Author*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.bio
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  bio: prismic.KeyTextField;
+
+  /**
+   * avatar field in *Author*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.avatar
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  avatar: prismic.ImageField<never>;
+
+  /**
+   * email field in *Author*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  email: prismic.KeyTextField;
+
+  /**
+   * Social Links field in *Author*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.social_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  social_links: prismic.GroupField<Simplify<AuthorDocumentDataSocialLinksItem>>;
+
+  /**
+   * Job title field in *Author*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.job_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  job_title: prismic.KeyTextField;
+
+  /**
+   * created at field in *Author*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.created_at
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  created_at: prismic.DateField;
+
+  /**
+   * updated at field in *Author*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: author.updated_at
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  updated_at: prismic.DateField;
+}
+
+/**
+ * Author document from Prismic
+ *
+ * - **API ID**: `author`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AuthorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
+
+/**
+ * Content for Category documents
+ */
+interface CategoryDocumentData {
+  /**
+   * Category Name field in *Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.category_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  category_name: prismic.KeyTextField;
+
+  /**
+   * slug field in *Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.slug
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  slug: prismic.KeyTextField;
+}
+
+/**
+ * Category document from Prismic
+ *
+ * - **API ID**: `category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CategoryDocumentData>,
+    "category",
+    Lang
+  >;
 
 /**
  * Content for HomePage documents
  */
 interface HomepageDocumentData {
   /**
-   * Slice Zone field in *HomePage*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
-   * Meta Title field in *HomePage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: homepage.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *HomePage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: homepage.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *HomePage*
+   * Banner field in *HomePage*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.meta_image
-   * - **Tab**: SEO & Metadata
+   * - **API ID Path**: homepage.banner
+   * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  meta_image: prismic.ImageField<never>;
+  banner: prismic.ImageField<never>;
 }
 
 /**
@@ -134,7 +275,177 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+/**
+ * Item in *Post → tags*
+ */
+export interface PostDocumentDataTagsItem {}
+
+/**
+ * Content for Post documents
+ */
+interface PostDocumentData {
+  /**
+   * featured_image field in *Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.featured_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  featured_image: prismic.ImageField<never>;
+
+  /**
+   * title field in *Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * tags field in *Post*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.tags[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tags: prismic.GroupField<Simplify<PostDocumentDataTagsItem>>;
+
+  /**
+   * Category field in *Post*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  category: ContentRelationshipFieldWithData<
+    [{ id: "category"; fields: ["category_name", "slug"] }]
+  >;
+
+  /**
+   * author field in *Post*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  author: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "author";
+        fields: ["name", "slug", "avatar", "bio", "email", "job_title"];
+      },
+    ]
+  >;
+
+  /**
+   * publish date field in *Post*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.publish_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  publish_date: prismic.DateField;
+
+  /**
+   * Excerpt field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.excerpt
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  excerpt: prismic.RichTextField;
+
+  /**
+   * Content field in *Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: content of the post
+   * - **API ID Path**: post.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField /**
+   * meta title field in *Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.meta_title
+   * - **Tab**: Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * meta description field in *Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.meta_description
+   * - **Tab**: Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+}
+
+/**
+ * Post document from Prismic
+ *
+ * - **API ID**: `post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
+
+export type AllDocumentTypes =
+  | AuthorDocument
+  | CategoryDocument
+  | HomepageDocument
+  | PostDocument;
+
+/**
+ * Default variation for Banner Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BannerSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Banner*
+ */
+type BannerSliceVariation = BannerSliceDefault;
+
+/**
+ * Banner Shared Slice
+ *
+ * - **API ID**: `banner`
+ * - **Description**: Banner
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BannerSlice = prismic.SharedSlice<"banner", BannerSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -319,10 +630,20 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AuthorDocument,
+      AuthorDocumentData,
+      AuthorDocumentDataSocialLinksItem,
+      CategoryDocument,
+      CategoryDocumentData,
       HomepageDocument,
       HomepageDocumentData,
-      HomepageDocumentDataSlicesSlice,
+      PostDocument,
+      PostDocumentData,
+      PostDocumentDataTagsItem,
       AllDocumentTypes,
+      BannerSlice,
+      BannerSliceVariation,
+      BannerSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceImageRightPrimary,
