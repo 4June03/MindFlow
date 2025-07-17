@@ -1,6 +1,7 @@
 .navbar {
-  background-color: #feb47b;
+  background-color: var(--color-foreground);
   padding: 1rem;
+  color: var(--color-background);
 }
 
 .navList {

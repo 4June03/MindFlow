@@ -1,9 +1,7 @@
 import { PostCard } from "@/components/post";
-import { Post } from "@/components/post/type";
-import { title } from "process";
-import React, { FC } from "react";
-import Banner from "../Banner";
 import { PostDocument } from "@/prismicio-types";
+import { FC } from "react";
+import Banner from "../Banner";
 
 export interface IHomePage {
   bannerImage?: string;

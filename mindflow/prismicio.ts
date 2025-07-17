@@ -6,7 +6,6 @@ import {
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
 
-
 /**
  * The project's Prismic repository name.
  */
@@ -37,7 +36,7 @@ export const createClient = (config: ClientConfig = {}) => {
     fetchOptions:
       process.env.NODE_ENV === "production"
         ? { next: { tags: ["prismic"] }, cache: "force-cache" }
-        : { next: { revalidate: 5 } },
+        : { next: { revalidate: 500 } },
     ...config,
   });
 

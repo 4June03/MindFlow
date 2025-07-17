@@ -31,7 +31,10 @@ export const PostDetail: FC<IPostDetail> = ({ post }) => {
             <div className={styles.metaItem}>
               <FaUser className={styles.icon} />
               <Link
-                href={`/author/${isFilled.contentRelationship(data.author) && data.author.data?.slug}`}
+                href={`/author/${
+                  isFilled.contentRelationship(data.author) &&
+                  data.author.data?.slug
+                }`}
                 className={styles.author}
               >
                 {(isFilled.contentRelationship(data.author) &&
@@ -74,7 +77,7 @@ export const PostDetail: FC<IPostDetail> = ({ post }) => {
           <PrismicRichText field={data.excerpt} />
         </section>
 
-        <section className={`${styles.content}`}>
+        <section className={styles.content}>
           <PrismicRichText field={data.content} />
         </section>
       </article>

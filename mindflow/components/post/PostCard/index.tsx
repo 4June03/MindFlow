@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Post } from "../type";
 import Image from "next/image";
 import styles from "./PostCard.module.css";
 import Link from "next/link";
@@ -30,10 +29,15 @@ export const PostCard: FC<IPostCard> = ({ postInfo, className }) => {
 
       <div className={styles.content}>
         <div className={styles.meta}>
-          <span className={styles.badge}>
-            {isFilled.contentRelationship(data.category) &&
-              data.category.data?.category_name}
-          </span>
+          {isFilled.contentRelationship(data.category) && (
+            <Link
+              href={`/categories/${data.category.uid}`}
+              className={styles.badge}
+            >
+              {data.category.data?.category_name}
+            </Link>
+          )}
+
           <span>•</span>
           <span>{data.publish_date}</span>
         </div>
