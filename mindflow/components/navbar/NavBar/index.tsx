@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import styles from "./NavBar.module.css";
 import { IoMenu } from "react-icons/io5";
-import { IoMdSearch } from "react-icons/io";
+import styles from "./NavBar.module.css";
 
 export interface NavBarItem {
   title: string;

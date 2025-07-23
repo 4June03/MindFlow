@@ -1,16 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
 import styles from "./Banner.module.css";
 
-export interface Banner {
+export interface IBanner {
   bannerImage?: string;
 }
 
-const Banner = () => {
+const Banner: FC<IBanner> = ({ bannerImage }) => {
   return (
     <div className={styles.bannerWrapper}>
       <Image
-        src="https://i.pinimg.com/736x/44/c8/6d/44c86da04bb9570dc171071691312427.jpg"
+        src={bannerImage || "/default-banner.jpg"}
         alt="Banner"
         fill
         className={styles.bannerImage}

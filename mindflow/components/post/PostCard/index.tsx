@@ -1,11 +1,11 @@
-import React, { FC } from "react";
-import Image from "next/image";
-import styles from "./PostCard.module.css";
-import Link from "next/link";
-import { FaRegUserCircle } from "react-icons/fa";
 import { PostDocument } from "@/prismicio-types";
-import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { isFilled } from "@prismicio/client";
+import { PrismicRichText } from "@prismicio/react";
+import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
+import { FaRegUserCircle } from "react-icons/fa";
+import styles from "./PostCard.module.css";
 
 export interface IPostCard {
   postInfo: PostDocument;
@@ -52,7 +52,7 @@ export const PostCard: FC<IPostCard> = ({ postInfo, className }) => {
         </h3>
 
         <section className={styles.excerpt}>
-          <PrismicRichText field={data.excerpt} />
+          <PrismicRichText field={data.excerpt}></PrismicRichText>
         </section>
 
         <div className={styles.tags}>

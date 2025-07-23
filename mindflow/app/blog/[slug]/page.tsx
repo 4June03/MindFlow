@@ -4,9 +4,9 @@ import { Metadata } from "next";
 import React from "react";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,7 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Blog({ params: { slug } }: Props) {
+export default async function Blog({ params }: Props) {
+  const { slug } = await params;
+
   const client = createClient();
   console.log("slug ở detail", slug);
   const post = await client.getByUID("post", slug);

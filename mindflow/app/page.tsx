@@ -5,12 +5,10 @@ import { PostDocument } from "@/prismicio-types";
 export default async function Home() {
   const client = createClient();
   const banner = await client.getByType("homepage");
-
   const posts = await client.getAllByType<PostDocument>("post");
-  console.log("banner", banner);
 
+  const bannerImg = banner.results[0].data.banner.url ?? undefined;
   console.log("postt", posts);
 
-  return <HomePage posts={posts} />;
-  // return <PostDetail />
+  return <HomePage posts={posts} bannerImage={bannerImg} />;
 }

@@ -11,7 +11,7 @@ export interface IHomePage {
 const HomePage: FC<IHomePage> = ({ bannerImage, posts }) => {
   return (
     <div>
-      <Banner />
+      {bannerImage && <Banner bannerImage={bannerImage} />}
       <h1 className="font-bold text-lg text-black px-4 mt-4">
         Blogs <span className="text-gray-400 text-sm">555</span>
       </h1>
