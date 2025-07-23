@@ -18,7 +18,7 @@
     /* --background: #ededed;
     --foreground: #ededed; */
     --background: #ffffff;
-    --foreground: #ffffff;
+    --foreground: #171717;
   }
 }
 
@@ -27,4 +27,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
